@@ -12,7 +12,7 @@ const projects = [
     link: portfolioImage,
     color: "#8f89ff",
     githubLink: "https://github.com/JagravKapoorr",
-    liveLink: "https://codervai.vercel.app",
+    liveLink: "https://jagrav-portfolio.netlify.app/",
   },
 ];
 
