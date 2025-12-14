@@ -43,49 +43,45 @@ export default function Contact() {
     return isValid;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+// Only modify the handleSubmit function in your existing component:
 
-    if (!validateForm()) {
-      setStatus("Please fill in all required fields correctly.");
-      return;
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Create a new FormData object to send to Web3Forms API
-    const form = new FormData();
-    form.append("access_key", "90f4b8af-e590-42b0-beaf-10b18f66a703"); // Replace with your Web3Forms access key
-    form.append("name", formData.name);
-    form.append("email", formData.email);
-    form.append("subject", formData.subject || "New Contact Form Submission");
-    form.append("message", formData.message);
+  if (!validateForm()) {
+    setStatus("Please fill in all required fields correctly.");
+    return;
+  }
 
-    try {
-      // Send form data to Web3Forms API
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: form,
+  // Send to your FastAPI backend (which will handle both Web3Forms and Telegram)
+  try {
+    const response = await fetch("https://telegram-bot-api-81g1.onrender.com/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      setStatus("Message sent successfully! Telegram notification sent.");
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setStatus("Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-        setErrors({});
-      } else {
-        setStatus(result.message || "There was an error sending your message.");
-      }
-    } catch (error) {
-      setStatus("An error occurred. Please try again.");
-      console.error("Error:", error);
+      setErrors({});
+    } else {
+      setStatus(result.detail || "There was an error sending your message.");
     }
-  };
-
+  } catch (error) {
+    setStatus("An error occurred. Please try again.");
+    console.error("Error:", error);
+  }
+};
   return (
     <main
       className="pt-20 lg:pt-[0rem] bg-[#04081A]
