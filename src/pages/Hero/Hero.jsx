@@ -189,7 +189,7 @@ const profile = {
                     I&apos;m
                     <span className="typing-effect gradient-text">
                       {" "}
-                      Jagrav Kapoor
+                      Shaurya Kapoor
                     </span>
                   </span>
                 </h1>
