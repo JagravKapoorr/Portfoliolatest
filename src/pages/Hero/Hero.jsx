@@ -42,34 +42,51 @@ const GridBackground = () => {
 
 export default function Hero() {
   const words = [
-    "Full-Stack Developer & AI/ML Enthusiast",
-    "Python Developer",
-    "Web Designer",
+  "Generative AI & Full-Stack Developer",
+  "Python Backend Developer",
+  "AI Engineer"
   ];
 
   const [code] = useState(`
-const profile = {
-    name: 'Jagrav Kapoor',
-    title: 'Full-Stack Developer | AI/ML Enthusiast | Problem Solver',
-    skills: [
-        'React.js','pandas','NumPy',
-        'MySQL','Python', 'Django', 'FastAPI', 
-        'Machine Learning', 'Data Analysis'
-    ],
-    hardWorker: true,
-    quickLearner: true,
-    problemSolver: true,
-    yearsOfExperience: 6 months, 
-    hireable: function() {
-        return (
-            this.hardWorker &&
-            this.problemSolver &&
-            this.skills.length >= 5 &&
-            this.yearsOfExperience >= 3
-        );
-    }
-};
-  `);
+class Developer:
+    def __init__(self):
+        self.name = "Jagrav Kapoor"
+        self.role = "Full-Stack Developer"
+        self.interests = [
+            "AI/ML",
+            "Web Development",
+            "Data Analysis",
+            "Problem Solving"
+        ]
+        self.skills = {
+            "Frontend": ["React.js"],
+            "AI": ["LangChain","RAG",
+                "LangGraph",
+                "Prompt Engineering",
+                "Vector Databases"
+            ],
+            "Backend": ["Python", "Django", "FastAPI"],
+            "Database": ["MySQL"],
+            "Data": ["Pandas", "NumPy"],
+            "ML": ["Machine Learning"]
+        }
+        self.experience = "1 year"
+        self.hard_worker = True
+        self.quick_learner = True
+        self.problem_solver = True
+
+    def is_hireable(self):
+        return all([
+            self.hard_worker,
+            self.quick_learner,
+            self.problem_solver,
+            len(self.skills) >= 5
+        ])
+
+
+developer = Developer()
+print(developer.is_hireable())
+`);
 
   useEffect(() => {
     Prism.highlightAll();
@@ -92,14 +109,14 @@ const profile = {
              screen and (width: 1367px) and (height: 768px),
              screen and (width: 1368px) and (height: 769px) {
         .hero {
-          padding-top: 12rem !important;
+          padding-top: 6rem !important;
         }
         .hero .container {
-          padding-top: 10rem !important;
-          margin-top: 5rem !important;
+          padding-top: 4rem !important;
+          margin-top: 1rem !important;
         }
         .hero-section-padding {
-          padding-top: 12rem !important;
+          padding-top: 6rem !important;
         }
       }
     `;
@@ -116,7 +133,7 @@ const profile = {
       if (isTargetResolution) {
         document.documentElement.style.setProperty(
           "--hero-padding-top",
-          "12rem"
+          "6rem"
         );
       } else {
         document.documentElement.style.setProperty("--hero-padding-top", "0");
@@ -136,7 +153,7 @@ const profile = {
     <>
       <main className="bg-[#020617] text-white min-h-screen">
         <section
-          className="hero min-h-screen flex items-center justify-center relative px-4 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-0 hero-section-padding"
+          className="hero min-h-screen flex items-start justify-center relative px-4 sm:px-6 lg:px-8 py-6 md:py-8 lg:py-0 hero-section-padding"
           style={{ paddingTop: "var(--hero-padding-top, 0)" }}
         >
           <div className="absolute inset-0"></div>
@@ -156,14 +173,14 @@ const profile = {
 
           {/* Main content container */}
           <div
-            className="container mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 py-8 md:py-10 lg:py-12 md:pt-28 xl:pt-28"
+            className="container mx-auto flex flex-col lg:flex-row items-start justify-between relative z-10 py-4 md:py-6 lg:py-8 md:pt-16 xl:pt-16"
             style={{
               paddingTop:
                 window.innerWidth >= 1360 &&
                 window.innerWidth <= 1370 &&
                 window.innerHeight >= 760 &&
                 window.innerHeight <= 775
-                  ? "12rem"
+                  ? "6rem"
                   : "",
             }}
           >
@@ -174,7 +191,7 @@ const profile = {
               <div className="absolute hidden lg:block lg:top-40 lg:-right-20 w-48 h-48 lg:w-64 lg:h-64 bg-teal-500/10 rounded-full blur-3xl"></div>
 
               {/* Welcome badge */}
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-6 sm:mb-8 animate__animated animate__fadeInDown animate__delay-1s">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-3 sm:mb-4 animate__animated animate__fadeInDown animate__delay-1s">
                 <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
                 <span className="text-gray-300 text-xs sm:text-sm font-medium">
                   Welcome to my universe
@@ -182,7 +199,7 @@ const profile = {
               </div>
 
               {/* Name section */}
-              <div className="relative mb-6 sm:mb-8">
+              <div className="relative mb-3 sm:mb-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">
                   <SparklesText text="Hello" />
                   <span className="relative inline-block">
@@ -197,7 +214,7 @@ const profile = {
               </div>
 
               {/* Role badge */}
-              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-6 sm:mb-8 backdrop-blur-sm animate__animated animate__fadeInUp animate__delay-1s">
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-3 sm:mb-4 backdrop-blur-sm animate__animated animate__fadeInUp animate__delay-1s">
                 <i className="fas fa-rocket text-blue-400 animate-bounce text-sm sm:text-base"></i>
                 <span>
                   <FlipWords
@@ -208,7 +225,7 @@ const profile = {
               </div>
 
               {/* Description */}
-              <div className="relative mb-8 sm:mb-12 max-w-xl">
+              <div className="relative mb-4 sm:mb-6 max-w-xl">
                 <p className="text-base sm:text-xl text-gray-300/90 leading-relaxed">
                   Python Developer 💻 |  APIs & AI/ML 🤖
                 </p>
@@ -272,7 +289,7 @@ const profile = {
                     <div className="window-dot bg-green-500"></div>
                     <span className="ml-2 text-sm text-gray-400 flex items-center gap-2">
                       <i className="fas fa-code"></i>
-                      developer.js
+                      developer.py
                     </span>
                   </div>
                   <pre className="language-javascript">
